@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>魏世奇 | 深天使投资工作站</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, 'Microsoft YaHei', sans-serif;
+        }
+        html, body {
+            overflow: hidden;
+            height: 100%;
+            background: #0a0e17;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(50, 80, 150, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(100, 50, 180, 0.1) 0%, transparent 40%);
+            color: #e0e6f0;
+        }
+        .slider {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+        }
+        .slide {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.8s ease;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .slide.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .slide-title {
+            font-size: 42px;
+            background: linear-gradient(90deg, #4fc3dc, #7b61ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .card {
+            background: rgba(20, 30, 50, 0.6);
+            border: 1px solid rgba(100, 120, 200, 0.2);
+            border-radius: 12px;
+            padding: 24px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+        .card:hover {
+            border-color: #7b61ff;
+            box-shadow: 0 0 25px rgba(123, 97, 255, 0.2);
+        }
+        .tag {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            margin-right: 6px;
+            margin-bottom: 10px;
+        }
+        .tag-success {background: rgba(39, 174, 96, 0.2);color: #2ecc71;border: 1px solid rgba(39, 174, 96, 0.3);}
+        .tag-warning {background: rgba(241, 196, 15, 0.2);color: #f1c40f;border: 1px solid rgba(241, 196, 15, 0.3);}
+        .tag-info {background: rgba(52, 152, 219, 0.2);color: #3498db;border: 1px solid rgba(52, 152, 219, 0.3);}
+        .label {color: #7b61ff;font-weight: 500;margin-right: 6px;}
+        .card h3 {color: #fff;font-size: 20px;margin-bottom: 10px;}
+        .card p {margin: 8px 0;color: #b0c0d8;font-size: 14px;}
+        .desc {margin-top: 12px;padding-top: 12px;border-top: 1px dashed rgba(100, 120, 200, 0.2);}
+        .nav-btn {
+            position: fixed;top: 50%;transform: translateY(-50%);
+            width: 50px;height: 50px;border-radius: 50%;
+            background: rgba(123, 97, 255, 0.2);border: 1px solid #7b61ff;
+            color: #fff;font-size: 20px;cursor: pointer;z-index: 999;
+            display: flex;align-items: center;justify-content: center;
+            transition: all 0.3s ease;
+        }
+        .nav-btn:hover {background: rgba(123, 97, 255, 0.5);transform: translateY(-50%) scale(1.1);}
+        #prev { left: 30px; }
+        #next { right: 30px; }
+        .pagination {
+            position: fixed;bottom: 30px;left: 50%;transform: translateX(-50%);
+            color: #a0b0c8;font-size: 16px;z-index: 999;
+        }
+        .cover {text-align: center;display: flex;flex-direction: column;justify-content: center;align-items: center;}
+        .cover h1 {font-size: 56px;margin-bottom: 20px;}
+        .cover p {font-size: 20px;color: #a0b0c8;}
+        @media (max-width: 768px) {
+            .grid {grid-template-columns: 1fr;}
+            .slide-title {font-size: 32px;}
+            .cover h1 {font-size: 42px;}
+        }
+    </style>
+</head>
+<body>
+    <div class="slider">
+        <div class="slide active"><div class="cover"><h1 class="slide-title">魏世奇 · 深天使投资工作站</h1><p>专注硬科技 · 人工智能 · 半导体 · 先进制造 · 量子信息</p></div></div>
+        <div class="slide"><h2 class="slide-title">基金概况</h2><div class="grid"><div class="card"><h3>天使一号</h3><p>深天使管理总规模3亿，2021年12月设立</p></div><div class="card"><h3>天使二号</h3><p>深天使管理总规模3亿，2025年8月设立</p></div><div class="card"><h3>联创一期</h3><p>深天使-启迪合作管理，2025年3月设立</p></div></div></div>
+        <div class="slide"><h2 class="slide-title">已投项目（1-4）</h2><div class="grid"><div class="card"><span class="tag tag-success">IPO申报中</span><span class="tag tag-info">人工智能-算力</span><h3>1. 云豹智能</h3><p>国产DPU第一股</p></div><div class="card"><span class="tag tag-success">Pre-IPO</span><span class="tag tag-info">人工智能-算力</span><h3>2. 墨芯人工智能</h3><p>深圳唯一GPU</p></div><div class="card"><span class="tag tag-success">Pre-IPO</span><span class="tag tag-info">人工智能-传感器</span><h3>3. 锐视智芯</h3><p>HVS融合技术全球领先</p></div><div class="card"><span class="tag tag-success">天使</span><span class="tag tag-info">人工智能-数据合成</span><h3>4. 数创弧光</h3><p>IDEA孵化大模型数据合成</p></div></div></div>
+        <div class="slide"><h2 class="slide-title">已投项目（5-8）</h2><div class="grid"><div class="card"><h3>5. 大乙半导体</h3><p>港大孵化半导体材料</p></div><div class="card"><h3>6. 手亿科技</h3><p>清华孵化人机交互</p></div><div class="card"><h3>7. 光启之境</h3><p>小米高管创业</p></div><div class="card"><h3>8. 墨思维尔</h3><p>南科大转化AR核心器件</p></div></div></div>
+        <div class="slide"><h2 class="slide-title">已投项目（9-12）</h2><div class="grid"><div class="card"><h3>9. 追引光子</h3><p>光学仿真软件</p></div><div class="card"><h3>10. 量视科技</h3><p>量子点微显示光机</p></div><div class="card"><h3>11. 璨辰科技</h3><p>AI+生命科学</p></div><div class="card"><h3>12. 奥术造物</h3><p>海外AI终端</p></div></div></div>
+        <div class="slide"><h2 class="slide-title">已投项目（13）</h2><div class="grid" style="place-items: center;"><div class="card" style="max-width: 600px;"><h3>13. 词元嵌入</h3><p>服务海内外一线品牌</p></div></div></div>
+        <div class="slide"><h2 class="slide-title">已拿份额·暂未落地</h2><div class="grid"><div class="card"><h3>1. 安菲翁科技</h3></div><div class="card"><h3>2. 智子芯元</h3></div><div class="card"><h3>3. Apex Context</h3></div><div class="card"><h3>4. 正元量子</h3></div></div></div>
+        <div class="slide"><h2 class="slide-title">重点关注项目</h2><div class="grid"><div class="card"><h3>1. 鼎犀智创</h3></div><div class="card"><h3>2. 思博威视</h3></div><div class="card"><h3>3. 大览科技</h3></div><div class="card"><h3>4. 星域蔚蓝</h3></div><div class="card"><h3>5. 卫澜深海</h3></div><div class="card"><h3>6. 知有无界</h3></div></div></div>
+        <div class="slide"><h2 class="slide-title">核心投资方向</h2><div class="card" style="max-width: 1000px; margin: 0 auto;"><p>✅ 火热行业上游 ✅ 水下项目+低估值 ✅ 量子信息 ✅ 航空航天 ✅ 6G通信 ✅ 核聚变 ✅ 下一代AI</p></div></div>
+        <div class="slide"><div class="cover"><h1 class="slide-title">感谢观看</h1><p>魏世奇 · 深天使投资工作站 © 2026</p></div></div>
+    </div>
+    <button class="nav-btn" id="prev">←</button><button class="nav-btn" id="next">→</button>
+    <div class="pagination" id="pagination">1 / 10</div>
+    <script>
+        const slides = document.querySelectorAll('.slide');const prevBtn = document.getElementById('prev');const nextBtn = document.getElementById('next');const pagination = document.getElementById('pagination');let currentSlide = 0;const totalSlides = slides.length;
+        function showSlide(index) {slides.forEach(s => s.classList.remove('active'));slides[index].classList.add('active');pagination.textContent = `${index+1} / ${totalSlides}`;currentSlide=index;}
+        function next(){currentSlide=(currentSlide+1)%totalSlides;showSlide(currentSlide);}
+        function prev(){currentSlide=(currentSlide-1+totalSlides)%totalSlides;showSlide(currentSlide);}
+        nextBtn.addEventListener('click',next);prevBtn.addEventListener('click',prev);
+        document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key===' ')next();if(e.key==='ArrowLeft')prev();});
+        showSlide(0);
+    </script>
+</body>
+</html>
