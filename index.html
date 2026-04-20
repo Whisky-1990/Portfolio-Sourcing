@@ -11,67 +11,106 @@
             box-sizing: border-box;
             font-family: 'Segoe UI', Roboto, 'Microsoft YaHei', sans-serif;
         }
-        html, body {
-            overflow: hidden;
-            height: 100%;
+
+        /* 科技感背景与基础样式 */
+        body {
             background: #0a0e17;
             background-image: 
                 radial-gradient(circle at 10% 20%, rgba(50, 80, 150, 0.1) 0%, transparent 40%),
                 radial-gradient(circle at 90% 80%, rgba(100, 50, 180, 0.1) 0%, transparent 40%);
             color: #e0e6f0;
+            line-height: 1.6;
+            padding: 20px;
         }
-        .slider {
-            width: 100vw;
-            height: 100vh;
-            position: relative;
+
+        /* 容器 */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
         }
-        .slide {
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            top: 0;
-            left: 0;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.8s ease;
-            padding: 40px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+
+        /* 头部 */
+        .header {
+            text-align: center;
+            padding: 40px 20px;
+            margin-bottom: 40px;
+            border-bottom: 1px solid rgba(100, 120, 200, 0.3);
         }
-        .slide.active {
-            opacity: 1;
-            visibility: visible;
-        }
-        .slide-title {
+
+        .header h1 {
             font-size: 42px;
             background: linear-gradient(90deg, #4fc3dc, #7b61ff);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            margin-bottom: 30px;
-            text-align: center;
+            margin-bottom: 10px;
         }
-        .grid {
+
+        .header p {
+            font-size: 18px;
+            color: #a0b0c8;
+        }
+
+        /* 模块标题 */
+        .section-title {
+            font-size: 26px;
+            margin: 30px 0 20px;
+            padding-left: 12px;
+            border-left: 4px solid #7b61ff;
+            background: linear-gradient(90deg, #4fc3dc, #7b61ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        /* 基金概况卡片 */
+        .fund-card {
+            background: rgba(20, 30, 50, 0.6);
+            border: 1px solid rgba(100, 120, 200, 0.2);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 20px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .fund-card:hover {
+            border-color: rgba(123, 97, 255, 0.5);
+            box-shadow: 0 0 20px rgba(123, 97, 255, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .fund-card h3 {
+            color: #4fc3dc;
+            margin-bottom: 8px;
+            font-size: 20px;
+        }
+
+        /* 项目卡片网格 */
+        .project-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
             gap: 20px;
-            max-width: 1400px;
-            margin: 0 auto;
         }
-        .card {
+
+        /* 项目卡片 */
+        .project-card {
             background: rgba(20, 30, 50, 0.6);
             border: 1px solid rgba(100, 120, 200, 0.2);
             border-radius: 12px;
             padding: 24px;
             backdrop-filter: blur(10px);
             transition: all 0.3s ease;
+            height: 100%;
         }
-        .card:hover {
+
+        .project-card:hover {
             border-color: #7b61ff;
             box-shadow: 0 0 25px rgba(123, 97, 255, 0.2);
+            transform: translateY(-3px);
         }
-        .tag {
+
+        .project-card .tag {
             display: inline-block;
             padding: 4px 10px;
             border-radius: 6px;
@@ -79,61 +118,336 @@
             margin-right: 6px;
             margin-bottom: 10px;
         }
-        .tag-success {background: rgba(39, 174, 96, 0.2);color: #2ecc71;border: 1px solid rgba(39, 174, 96, 0.3);}
-        .tag-warning {background: rgba(241, 196, 15, 0.2);color: #f1c40f;border: 1px solid rgba(241, 196, 15, 0.3);}
-        .tag-info {background: rgba(52, 152, 219, 0.2);color: #3498db;border: 1px solid rgba(52, 152, 219, 0.3);}
-        .label {color: #7b61ff;font-weight: 500;margin-right: 6px;}
-        .card h3 {color: #fff;font-size: 20px;margin-bottom: 10px;}
-        .card p {margin: 8px 0;color: #b0c0d8;font-size: 14px;}
-        .desc {margin-top: 12px;padding-top: 12px;border-top: 1px dashed rgba(100, 120, 200, 0.2);}
-        .nav-btn {
-            position: fixed;top: 50%;transform: translateY(-50%);
-            width: 50px;height: 50px;border-radius: 50%;
-            background: rgba(123, 97, 255, 0.2);border: 1px solid #7b61ff;
-            color: #fff;font-size: 20px;cursor: pointer;z-index: 999;
-            display: flex;align-items: center;justify-content: center;
-            transition: all 0.3s ease;
+
+        .tag-success {
+            background: rgba(39, 174, 96, 0.2);
+            color: #2ecc71;
+            border: 1px solid rgba(39, 174, 96, 0.3);
         }
-        .nav-btn:hover {background: rgba(123, 97, 255, 0.5);transform: translateY(-50%) scale(1.1);}
-        #prev { left: 30px; }
-        #next { right: 30px; }
-        .pagination {
-            position: fixed;bottom: 30px;left: 50%;transform: translateX(-50%);
-            color: #a0b0c8;font-size: 16px;z-index: 999;
+
+        .tag-warning {
+            background: rgba(241, 196, 15, 0.2);
+            color: #f1c40f;
+            border: 1px solid rgba(241, 196, 15, 0.3);
         }
-        .cover {text-align: center;display: flex;flex-direction: column;justify-content: center;align-items: center;}
-        .cover h1 {font-size: 56px;margin-bottom: 20px;}
-        .cover p {font-size: 20px;color: #a0b0c8;}
+
+        .tag-info {
+            background: rgba(52, 152, 219, 0.2);
+            color: #3498db;
+            border: 1px solid rgba(52, 152, 219, 0.3);
+        }
+
+        .project-card h3 {
+            color: #fff;
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .project-card .label {
+            color: #7b61ff;
+            font-weight: 500;
+            margin-right: 6px;
+        }
+
+        .project-card p {
+            margin: 8px 0;
+            color: #b0c0d8;
+            font-size: 14px;
+        }
+
+        .project-card .desc {
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px dashed rgba(100, 120, 200, 0.2);
+        }
+
+        /* 投资方向 */
+        .invest-direction {
+            background: rgba(20, 30, 50, 0.6);
+            border: 1px solid rgba(100, 120, 200, 0.2);
+            border-radius: 12px;
+            padding: 24px;
+            margin-top: 30px;
+        }
+
+        .invest-direction p {
+            color: #b0c0d8;
+            margin: 8px 0;
+        }
+
+        /* 底部 */
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 50px;
+            color: #7080a0;
+            border-top: 1px solid rgba(100, 120, 200, 0.3);
+        }
+
+        /* 响应式 */
         @media (max-width: 768px) {
-            .grid {grid-template-columns: 1fr;}
-            .slide-title {font-size: 32px;}
-            .cover h1 {font-size: 42px;}
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+            .header h1 {
+                font-size: 32px;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="slider">
-        <div class="slide active"><div class="cover"><h1 class="slide-title">魏世奇 · 深天使投资工作站</h1><p>专注硬科技 · 人工智能 · 半导体 · 先进制造 · 量子信息</p></div></div>
-        <div class="slide"><h2 class="slide-title">基金概况</h2><div class="grid"><div class="card"><h3>天使一号</h3><p>深天使管理总规模3亿，2021年12月设立</p></div><div class="card"><h3>天使二号</h3><p>深天使管理总规模3亿，2025年8月设立</p></div><div class="card"><h3>联创一期</h3><p>深天使-启迪合作管理，2025年3月设立</p></div></div></div>
-        <div class="slide"><h2 class="slide-title">已投项目（1-4）</h2><div class="grid"><div class="card"><span class="tag tag-success">IPO申报中</span><span class="tag tag-info">人工智能-算力</span><h3>1. 云豹智能</h3><p>国产DPU第一股</p></div><div class="card"><span class="tag tag-success">Pre-IPO</span><span class="tag tag-info">人工智能-算力</span><h3>2. 墨芯人工智能</h3><p>深圳唯一GPU</p></div><div class="card"><span class="tag tag-success">Pre-IPO</span><span class="tag tag-info">人工智能-传感器</span><h3>3. 锐视智芯</h3><p>HVS融合技术全球领先</p></div><div class="card"><span class="tag tag-success">天使</span><span class="tag tag-info">人工智能-数据合成</span><h3>4. 数创弧光</h3><p>IDEA孵化大模型数据合成</p></div></div></div>
-        <div class="slide"><h2 class="slide-title">已投项目（5-8）</h2><div class="grid"><div class="card"><h3>5. 大乙半导体</h3><p>港大孵化半导体材料</p></div><div class="card"><h3>6. 手亿科技</h3><p>清华孵化人机交互</p></div><div class="card"><h3>7. 光启之境</h3><p>小米高管创业</p></div><div class="card"><h3>8. 墨思维尔</h3><p>南科大转化AR核心器件</p></div></div></div>
-        <div class="slide"><h2 class="slide-title">已投项目（9-12）</h2><div class="grid"><div class="card"><h3>9. 追引光子</h3><p>光学仿真软件</p></div><div class="card"><h3>10. 量视科技</h3><p>量子点微显示光机</p></div><div class="card"><h3>11. 璨辰科技</h3><p>AI+生命科学</p></div><div class="card"><h3>12. 奥术造物</h3><p>海外AI终端</p></div></div></div>
-        <div class="slide"><h2 class="slide-title">已投项目（13）</h2><div class="grid" style="place-items: center;"><div class="card" style="max-width: 600px;"><h3>13. 词元嵌入</h3><p>服务海内外一线品牌</p></div></div></div>
-        <div class="slide"><h2 class="slide-title">已拿份额·暂未落地</h2><div class="grid"><div class="card"><h3>1. 安菲翁科技</h3></div><div class="card"><h3>2. 智子芯元</h3></div><div class="card"><h3>3. Apex Context</h3></div><div class="card"><h3>4. 正元量子</h3></div></div></div>
-        <div class="slide"><h2 class="slide-title">重点关注项目</h2><div class="grid"><div class="card"><h3>1. 鼎犀智创</h3></div><div class="card"><h3>2. 思博威视</h3></div><div class="card"><h3>3. 大览科技</h3></div><div class="card"><h3>4. 星域蔚蓝</h3></div><div class="card"><h3>5. 卫澜深海</h3></div><div class="card"><h3>6. 知有无界</h3></div></div></div>
-        <div class="slide"><h2 class="slide-title">核心投资方向</h2><div class="card" style="max-width: 1000px; margin: 0 auto;"><p>✅ 火热行业上游 ✅ 水下项目+低估值 ✅ 量子信息 ✅ 航空航天 ✅ 6G通信 ✅ 核聚变 ✅ 下一代AI</p></div></div>
-        <div class="slide"><div class="cover"><h1 class="slide-title">感谢观看</h1><p>魏世奇 · 深天使投资工作站 © 2026</p></div></div>
+    <div class="container">
+        <!-- 头部 -->
+        <div class="header">
+            <h1>魏世奇 · 深天使投资工作站</h1>
+            <p>专注硬科技 · 人工智能 · 半导体 · 先进制造 · 量子信息</p>
+        </div>
+
+        <!-- 基金概况 -->
+        <h2 class="section-title">基金概况</h2>
+        <div class="fund-card">
+            <h3>天使一号</h3>
+            <p>深天使管理总规模3亿，2021年12月设立，只能投合作子基金已投+深圳项目</p>
+        </div>
+        <div class="fund-card">
+            <h3>天使二号</h3>
+            <p>深天使管理总规模3亿，2025年8月设立，只能投合作子基金已投+深圳项目</p>
+        </div>
+        <div class="fund-card">
+            <h3>联创一期</h3>
+            <p>深天使-启迪合作管理，2025年3月设立，投资极早期项目</p>
+        </div>
+
+        <!-- 已投项目 -->
+        <h2 class="section-title">已投项目</h2>
+        <div class="project-grid">
+            <!-- 云豹智能 -->
+            <div class="project-card">
+                <span class="tag tag-success">IPO申报中</span>
+                <span class="tag tag-info">人工智能-算力</span>
+                <h3>1. 云豹智能</h3>
+                <p><span class="label">亮点：</span>国产DPU第一股/近两年业绩增长迅速</p>
+                <p><span class="label">投资方：</span>腾讯、红杉、深创投、IDG、五源、基石等+天使二号（2025）</p>
+                <p class="desc">专注云计算和数据中心DPU芯片与解决方案，2020年萧启阳博士创立，核心团队来自Broadcom、Intel、Arm、阿里等，打造"软件定义芯片"行业标准。</p>
+            </div>
+
+            <!-- 墨芯人工智能 -->
+            <div class="project-card">
+                <span class="tag tag-success">Pre-IPO</span>
+                <span class="tag tag-info">人工智能-算力</span>
+                <h3>2. 墨芯人工智能</h3>
+                <p><span class="label">亮点：</span>深圳唯一GPU/近两年业绩增长迅速</p>
+                <p><span class="label">投资方：</span>蚂蚁、深创投、基石、华大松禾、同威等+天使一号（2022）</p>
+                <p class="desc">双稀疏化算法全球专利，突破AI算力瓶颈，团队来自卡内基梅隆大学、Intel、Marvell、Oracle等，打造AI芯片2.0。</p>
+            </div>
+
+            <!-- 锐视智芯 -->
+            <div class="project-card">
+                <span class="tag tag-success">Pre-IPO</span>
+                <span class="tag tag-info">人工智能-传感器</span>
+                <h3>3. 锐视智芯</h3>
+                <p><span class="label">亮点：</span>HVS融合技术全球领先/近两年业绩增长迅速</p>
+                <p><span class="label">投资方：</span>哈勃、舜宇、虹软、中科创星、海康、同创伟业等+天使一号（2022）</p>
+                <p class="desc">全球领先HVS融合视觉感知技术，单芯片融合图像+事件感知，为AI提供高效视觉输入。</p>
+            </div>
+
+            <!-- 数创弧光 -->
+            <div class="project-card">
+                <span class="tag tag-success">天使</span>
+                <span class="tag tag-info">人工智能-数据合成</span>
+                <h3>4. 数创弧光</h3>
+                <p><span class="label">亮点：</span>IDEA孵化/大语言模型数据合成/面向海外场景</p>
+                <p><span class="label">投资方：</span>哈勃、英诺、君联等+联创一期（2025）、天使二号（2026）</p>
+                <p class="desc">知识驱动合成数据，覆盖预训练/微调全链条，产品Living KB+SynData Platform，聚焦金融、制造，布局中东海外市场。</p>
+            </div>
+
+            <!-- 大乙半导体 -->
+            <div class="project-card">
+                <span class="tag tag-success">天使</span>
+                <span class="tag tag-info">新材料-半导体</span>
+                <h3>5. 大乙半导体</h3>
+                <p><span class="label">亮点：</span>香港大学孵化/半导体铜键合材料</p>
+                <p><span class="label">投资方：</span>中科创星、英诺、基石等+天使二号（2025）</p>
+                <p class="desc">第三代半导体先进封装与热管理材料，全球独有固态铜烧结技术，服务新能源汽车、AI服务器、低空经济等。</p>
+            </div>
+
+            <!-- 手亿科技 -->
+            <div class="project-card">
+                <span class="tag tag-success">天使</span>
+                <span class="tag tag-info">人工智能-数采交互</span>
+                <h3>6. 手亿科技</h3>
+                <p><span class="label">亮点：</span>清华大学孵化/人机交互+数据采集</p>
+                <p><span class="label">投资方：</span>英诺、力合等+联创一期（2025）、天使二号（2025）</p>
+                <p class="desc">视觉+IMU融合算法，智能腕带为XR/具身智能提供手部操作数据，支撑机器人模仿学习。</p>
+            </div>
+
+            <!-- 光启之境 -->
+            <div class="project-card">
+                <span class="tag tag-success">天使</span>
+                <span class="tag tag-info">人工智能-智能终端</span>
+                <h3>7. 光启之境</h3>
+                <p><span class="label">亮点：</span>小米高管创业/图像模型+Agent+终端</p>
+                <p><span class="label">投资方：</span>顺为、正轩、英诺、鼎晖、弘晖等+天使二号（2025）</p>
+                <p class="desc">AI智能影像产品，降低创作门槛，创始人小米11年资深高管，软硬件结合经验丰富。</p>
+            </div>
+
+            <!-- 墨思维尔 -->
+            <div class="project-card">
+                <span class="tag tag-success">天使</span>
+                <span class="tag tag-info">新材料-智能终端上游</span>
+                <h3>8. 墨思维尔</h3>
+                <p><span class="label">亮点：</span>南科大转化/超表面光波导/AR核心器件</p>
+                <p><span class="label">投资方：</span>深创投、力合、南科大等+联创一期（2025）</p>
+                <p class="desc">2025年成立，超表面技术实现AR全彩显示，种子轮估值5000万，2026年推进Pre-A与产线建设。</p>
+            </div>
+
+            <!-- 追引光子 -->
+            <div class="project-card">
+                <span class="tag tag-success">种子</span>
+                <span class="tag tag-info">人工智能-工业软件</span>
+                <h3>9. 追引光子</h3>
+                <p><span class="label">亮点：</span>南科大转化/光学仿真软件/海外对标</p>
+                <p><span class="label">投资方：</span>松禾创新+联创一期（2025）</p>
+                <p class="desc">LEDA仿真软件已公测，TMM即将发布，集成AI接口，搭建光学全场景仿真体系。</p>
+            </div>
+
+            <!-- 量视科技 -->
+            <div class="project-card">
+                <span class="tag tag-success">种子</span>
+                <span class="tag tag-info">先进制造-智能终端上游</span>
+                <h3>10. 量视科技</h3>
+                <p><span class="label">亮点：</span>南科大转化/量子点微显示光机</p>
+                <p><span class="label">投资方：</span>联创一期（2025）</p>
+                <p class="desc">μQLED光机研发，已点亮0.26''单色产品，合作开发智能眼镜，攻坚全彩与量产。</p>
+            </div>
+
+            <!-- 璨辰科技 -->
+            <div class="project-card">
+                <span class="tag tag-success">天使</span>
+                <span class="tag tag-info">人工智能-AI4S</span>
+                <h3>11. 璨辰科技</h3>
+                <p><span class="label">亮点：</span>清华+斯坦福团队/AI+生命科学</p>
+                <p><span class="label">投资方：</span>东方富海+联创一期（2025）、启迪、松禾、零以等</p>
+                <p class="desc">全球领先虚拟细胞器官智能体，变革生物医药、药物研发、细胞工程等领域。</p>
+            </div>
+
+            <!-- 奥术造物 -->
+            <div class="project-card">
+                <span class="tag tag-success">种子</span>
+                <span class="tag tag-info">人工智能-AI终端</span>
+                <h3>12. 奥术造物</h3>
+                <p><span class="label">亮点：</span>科创学院团队/海外成熟市场AI终端</p>
+                <p><span class="label">投资方：</span>极客公园、松禾创新+联创一期（2026）</p>
+                <p class="desc">海外DND跑团+国内剧本杀AI终端，科创学院明星团队。</p>
+            </div>
+
+            <!-- 词元嵌入 -->
+            <div class="project-card">
+                <span class="tag tag-success">种子</span>
+                <span class="tag tag-info">人工智能-AI服务</span>
+                <h3>13. 词元嵌入</h3>
+                <p><span class="label">亮点：</span>GEO团队/服务海内外一线品牌</p>
+                <p><span class="label">投资方：</span>联创一期（2025）</p>
+                <p class="desc">对标PureBlue，签约奇富金融、海尔、罗技、林氏家居等头部品牌。</p>
+            </div>
+        </div>
+
+        <!-- 拿到份额但投不出 -->
+        <h2 class="section-title">已拿份额·暂未落地</h2>
+        <div class="project-grid">
+            <div class="project-card">
+                <span class="tag tag-warning">投不出</span>
+                <span class="tag tag-info">人工智能-语音合成</span>
+                <h3>1. 安菲翁科技</h3>
+                <p><span class="label">亮点：</span>港中深孵化/大湾区语音生成第一梯队</p>
+                <p><span class="label">投资方：</span>哈勃、高新投、银杏谷</p>
+                <p class="desc">AI语音服务，核心技术语音深度伪造鉴伪，项目方仅提供深天使份额。</p>
+            </div>
+
+            <div class="project-card">
+                <span class="tag tag-warning">投不出</span>
+                <span class="tag tag-info">人工智能-算力优化</span>
+                <h3>2. 智子芯元</h3>
+                <p><span class="label">亮点：</span>港中深孵化/专供国产+华为</p>
+                <p><span class="label">投资方：</span>真格、英诺、松禾</p>
+                <p class="desc">AI+数学融合算子优化平台，摆脱人力依赖，项目方仅开放深天使份额。</p>
+            </div>
+
+            <div class="project-card">
+                <span class="tag tag-warning">推进中</span>
+                <span class="tag tag-info">人工智能-视频Agent</span>
+                <h3>3. Apex Context</h3>
+                <p><span class="label">亮点：</span>生数科技VP创立/对标Pollo AI</p>
+                <p><span class="label">投资方：</span>达泰</p>
+                <p class="desc">AI视频Agent Pexo已上线，定位Agent工厂，要求快速交割，二期款未到账。</p>
+            </div>
+
+            <div class="project-card">
+                <span class="tag tag-warning">首轮未进</span>
+                <span class="tag tag-info">量子信息-量子计算</span>
+                <h3>4. 正元量子</h3>
+                <p><span class="label">亮点：</span>中科大+南科大团队/量子计算水下项目</p>
+                <p><span class="label">投资方：</span>深创投、中芯聚源等</p>
+                <p class="desc">祖冲之号总师弟子创办，量子3D集成技术，腾讯超导量子实验创始人，投委存技术疑问。</p>
+            </div>
+        </div>
+
+        <!-- 重点关注 -->
+        <h2 class="section-title">重点关注项目</h2>
+        <div class="project-grid">
+            <div class="project-card">
+                <span class="tag tag-info">人工智能-AI4S</span>
+                <h3>1. 鼎犀智创</h3>
+                <p><span class="label">亮点：</span>北大常务副校长创立/材料研发Agent</p>
+                <p><span class="label">投资方：</span>上海未来先导、晶泰、元生、昆仲</p>
+                <p class="desc">Rhino AI数字科学家系统，服务新能源、半导体、航空航天材料研发。</p>
+            </div>
+
+            <div class="project-card">
+                <span class="tag tag-info">人工智能-AI终端</span>
+                <h3>2. 思博威视</h3>
+                <p><span class="label">亮点：</span>科创学院孵化/运动场景</p>
+                <p><span class="label">投资方：</span>高瓴、Insta</p>
+                <p class="desc">AI运动分析，自动高光集锦+动作指导，私人影像教练。</p>
+            </div>
+
+            <div class="project-card">
+                <span class="tag tag-info">人工智能-AI终端</span>
+                <h3>3. 大览科技</h3>
+                <p><span class="label">亮点：</span>魔力营在孵/远距离影像</p>
+                <p><span class="label">投资方：</span>红杉、明势</p>
+                <p class="desc">海康萤石前负责人创办，智能影像软硬件，年销十亿级经验。</p>
+            </div>
+
+            <div class="project-card">
+                <span class="tag tag-info">人工智能-AI终端</span>
+                <h3>4. 星域蔚蓝</h3>
+                <p><span class="label">亮点：</span>半科创学院团队/潜水场景</p>
+                <p><span class="label">投资方：</span>华山、初心</p>
+                <p class="desc">哈工大/东南/港科大团队，深潜场景AI终端。</p>
+            </div>
+
+            <div class="project-card">
+                <span class="tag tag-info">人工智能-具身智能</span>
+                <h3>5. 卫澜深海</h3>
+                <p><span class="label">亮点：</span>西交大团队/水下优艾智合</p>
+                <p><span class="label">投资方：</span>英诺</p>
+                <p class="desc">超级蛙人水下具身平台，海洋水下作业，指标超精英蛙人。</p>
+            </div>
+
+            <div class="project-card">
+                <span class="tag tag-info">人工智能-具身智能</span>
+                <h3>6. 知有无界</h3>
+                <p><span class="label">亮点：</span>清华团队/船舶喷涂+物流+太空机械臂</p>
+                <p><span class="label">投资方：</span>卓源亚洲、松禾、力合</p>
+                <p class="desc">聚焦太空柔性机械臂，具身智能多场景落地。</p>
+            </div>
+        </div>
+
+        <!-- 底部 -->
+        <div class="footer">
+            <p>魏世奇 · 深天使投资工作站 © 2026 All Rights Reserved</p>
+        </div>
     </div>
-    <button class="nav-btn" id="prev">←</button><button class="nav-btn" id="next">→</button>
-    <div class="pagination" id="pagination">1 / 10</div>
-    <script>
-        const slides = document.querySelectorAll('.slide');const prevBtn = document.getElementById('prev');const nextBtn = document.getElementById('next');const pagination = document.getElementById('pagination');let currentSlide = 0;const totalSlides = slides.length;
-        function showSlide(index) {slides.forEach(s => s.classList.remove('active'));slides[index].classList.add('active');pagination.textContent = `${index+1} / ${totalSlides}`;currentSlide=index;}
-        function next(){currentSlide=(currentSlide+1)%totalSlides;showSlide(currentSlide);}
-        function prev(){currentSlide=(currentSlide-1+totalSlides)%totalSlides;showSlide(currentSlide);}
-        nextBtn.addEventListener('click',next);prevBtn.addEventListener('click',prev);
-        document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key===' ')next();if(e.key==='ArrowLeft')prev();});
-        showSlide(0);
-    </script>
 </body>
 </html>
