@@ -1,10 +1,8 @@
-# 魏世奇 · 深天使投资工作站
-科技风个人投资展示站 | GitHub Pages 部署
+# 深天使·魏世奇·工作站
+GitHub Pages 部署
 
 ## 访问地址
-https://你的GitHub用户名.github.io/仓库名/
+https://whisky-1990.github.io/Portfolio-Sourcing/
 
-## 功能
-- 全屏幻灯片展示
-- 基金概况 + 已投项目 + 投资方向
-- 深色科技感 UI
+## 写在下面
+魏世奇的Portfolio&Sourcing，随时更新，敬请关注~
